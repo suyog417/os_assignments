@@ -1,28 +1,38 @@
-#include <stdio.h>
-#include <unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/types.h>
+#include<unistd.h>
+
 int main(int argc, char const *argv[])
 {
-    
-    int pid = getpid();
-    int ppid = getppid();
-    printf("%d", pid);
-    printf("%d", ppid);
-    int forkId = fork();
-    if (forkId == 0)
-        for (size_t i = 0; i < 100; i++)
-        {
+    int arr[100];
+    int n;
 
-            printf("child: \n%d\n", forkId);
-        }
-    else{
+    printf("Enter the number of elements : ");
+    scanf("%d",&n);
 
-    int x;
-    wait(&x);
-        for (size_t i = 0; i < 100; i++)
-        {
-
-            printf("parent: \n%d\n", forkId);
-        }
+    printf("Enter %d integers : \n",n);
+    for(int i = 0; i < n;i++){
+        scanf("%d",&arr[i]);
     }
+
+    pid_t pid = fork();
+    if (pid < 0)
+    {
+        printf("Fork Failed");
+    }
+    else if (pid == 0)
+    {
+        //Convert integer array to character array
+        char args[100];
+        for (size_t i = 0; i < n; i++)
+        {
+            args[i] = arr[i];
+        }
+        
+    }
+    
+    
+
     return 0;
 }
