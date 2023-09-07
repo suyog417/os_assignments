@@ -18,11 +18,6 @@ int main(int argc, char const *argv[])
         args[i] = arr[i];
         printf("%c",args[i]);
     }
-    for (size_t i = 0; i < n; i++)
-    {
-        // printf("%c",args[i]);
-        // int temp = args[i];
-        // printf("%d",temp);
-    }
+    printf("%c",args);
     return 0;
 }
