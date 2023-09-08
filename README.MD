@@ -2,7 +2,7 @@
 # OSSP Assignments
 
 For all the lazy fellas 
-
+## Note : All commands are for linux terminal only. 
 ### Assignment 1
 Shell programming Write a program to implement an address book with options given below: a) Create address book. b) View address book. c) Insert a record. d) Delete a record. e) Modify a record. f) Exit.
 
