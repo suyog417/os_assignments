@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <sys/wait.h>  // Added for wait
+#include <sys/wait.h> // Added for wait
 #include <unistd.h>
+#include <string.h>
 
 void swap(int *x, int *y)
 {
@@ -14,7 +15,7 @@ void swap(int *x, int *y)
 void selectionSort(int arr[], int n)
 {
     int i, j, min_idx;
-    for (i = 0; i < n - 1; i++)
+    for (i = 1; i < n - 1; i++)
     {
         min_idx = i;
         for (j = i + 1; j < n; j++)
@@ -28,46 +29,44 @@ void selectionSort(int arr[], int n)
 int main(int argc, char const *argv[])
 {
     int arr[100];
-    int n;
+    int n,status,len;
 
+    // Taking input for array size
     printf("Enter the number of elements : ");
     scanf("%d", &n);
-
+    len = n + 1;
+    arr[0] = len;
+    // Taking input for array elements
     printf("Enter %d integers : \n", n);
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i < len; i++)
     {
         scanf("%d", &arr[i]);
     }
-
-    int len = n;  // No need to divide sizeof(arr) by sizeof(arr[0])
     selectionSort(arr, len);
+    char strArray[len * 11];
     for (size_t i = 0; i < len; i++)
     {
-        printf("%d\t",arr[i]);
+        char temp[10];
+        sprintf(temp, "%d\n", arr[i]);
+        strcat(strArray, temp);
+        // printf("Array : ");
+        // printf("%d\n", arr[i]);
     }
-    char charArray[n * 11];
+    // printf("%s", strArray);
 
-    for (int i = 0; i < n; i++)
-    {
-        sprintf(charArray + i * 11, "%d\n", arr[i]);
-    }
-
-    printf("Array sorted...\n");
-    
     pid_t pid = fork();
     if (pid < 0)
     {
-        printf("Process Failed...\n");
+        printf("Process Failed ... ");
     }
     else if (pid == 0)
     {
-        // In the child process, execute a program (e.g., "child.out") and pass charArray as an argument
-        execl("./child.out", "child.out", charArray, NULL);
+        execl("./child.out", "child.out", strArray, NULL);
     }
     else
     {
-        // In the parent process, wait for the child to complete
-        wait(NULL);
+        wait(&status);
+        printf("Status : %d", status);
     }
     return 0;
 }

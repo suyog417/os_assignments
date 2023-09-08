@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void charArrayToIntArray(const char *charArray, int *intArray, int n)
+void charArrayToIntArray(char *charArray, int *intArray, int n)
 {
     const char *delimiter = "\n";
     char *token;
@@ -12,9 +12,10 @@ void charArrayToIntArray(const char *charArray, int *intArray, int n)
 
     while (token != NULL && i < n)
     {
-        intArray[i] = atoi(token);
-        i++;
+        int temp = atoi(token);
+        intArray[i] = temp;
         token = strtok(NULL, delimiter);
+        i++;
     }
 }
 
@@ -33,31 +34,37 @@ int binarySearch(int *arr, int left, int right, int target)
     return -1;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
         printf("Usage: %s <element1> <element2> ... <elementN>\n", argv[0]);
         return 1;
     }
-
+    // int n = argc;
+    int len = atoi(argv[1]);
+    int intArray[len];
     int target;
-    int n = argc - 1;
-    int intArray[n];
-
-    charArrayToIntArray(argv[1], intArray, n); // Start from argv[1] to skip program name
-
-    printf("Enter the element you want to search : ");
+    charArrayToIntArray(argv[1],intArray,len);
+    printf("Sorted Array : ");
+    for (size_t i = 1; i < len; i++)
+    {
+        printf("%d\t",intArray[i]);
+    }
+    
+    printf("\nChild Process : ");
+    printf("\nEnter the element you want to search : ");
     scanf("%d", &target);
-    int result = binarySearch(intArray, 0, n - 1, target);
+    int result = binarySearch(intArray, 0, len - 1, target);
 
     if (result != -1)
     {
-        printf("Element found at index %d\n", result);
+        printf("Element found at index %d\n", result-1);
     }
     else
     {
         printf("Element not found\n");
     }
+       
     return 0;
 }
