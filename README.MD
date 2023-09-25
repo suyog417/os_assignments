@@ -28,9 +28,49 @@ gcc main.c
 ```
 gcc -o child.out child.c
 ```
-_-o is used to specify the name for ouput file_
+_-o is used to specify the name for ouput file._
 
 #### To run the code : 
+```
+./a.out
+```
+
+### Assignment 3
+Thread management using pthread library. Implement matrix multiplication using multithreading. Application should have pthread_create, pthread_join, pthread_exit. In the program, every thread must return the value and must be collected in pthread_join in the main function. Final sum of rowcolumn multiplication must be done by main thread (main function).
+
+#### Compile main file : 
+```
+gcc tut3.c
+```
+#### To run the code : 
+```
+./a.out
+```
+
+### Assignment 4
+Thread management using pthread library. Implement matrix multiplication using multithreading. Application should have pthread_create, pthread_join, pthread_exit. In the program, every thread must return the value and must be collected in pthread_join in the main function. Final sum of rowcolumn multiplication must be done by main thread (main function).
+
+#### Compile main file : 
+```
+gcc ipc.c
+```
+#### To run the code : 
+Create a text file before executing this command 
+```
+./a.out
+```
+
+### Assignment 5
+Thread management using pthread library. Implement matrix multiplication using multithreading. Application should have pthread_create, pthread_join, pthread_exit. In the program, every thread must return the value and must be collected in pthread_join in the main function. Final sum of rowcolumn multiplication must be done by main thread (main function).
+
+#### Compile both files : 
+```
+gcc client.c -o client
+gcc server.c -o server
+```
+
+#### To run the code : 
+Create a text file before executing this command 
 ```
 ./a.out
 ```
